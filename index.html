@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assests/styles.css">
+    <title>Hangman</title>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>A Hangman game</h1>
+        <p>Guess the word win the game, or get hung</p>
+      </header>
+
+      <section class="gameboard">
+        <div id="gamediv" class="panel">
+          <div id="display-word">
+            <p id="word-display-letters"></p>
+          </div>
+        </div>
+        <div id="general-display">
+          <pre><p>+----Guessed-Letters----------------------------------+</p></pre>
+          <pre><p>| <span id="guessed-letters">                                                   </span> |</p></pre>
+          <pre><p>+----Stats--------------------------------------------+</p></pre>
+          <pre><p>| Incorrect Letters: <span id="error-count"></span> |</p></pre>
+          <pre><p>| Wins: <span id="win-count"></span> |</p></pre>
+          <pre><p>| Losses: <span id="loss-count"></span> |</p></pre>
+          <pre><p>+-----------------------------------------------------+</p></pre>
+        </div>
+      </section>
+    </main>
+    <script src="./assests/index.js"></script>
+  </body>
+</html>
