@@ -10,7 +10,6 @@ const wordDisplayLettersElement = document.querySelector(
 const guessedLettersElement = document.querySelector("#guessed-letters");
 const errorCountElement = document.querySelector("#error-count");
 const winCountElement = document.querySelector("#win-count");
-console.log(winCountElement.value);
 const lossCountElement = document.querySelector("#loss-count");
 
 const validGuesses = new Set([
@@ -44,17 +43,7 @@ const validGuesses = new Set([
 
 class HangmanGame {
   constructor() {
-    this.wordList = [
-      "javascript",
-      "python",
-      "html",
-      "css",
-      "csharp",
-      "java",
-      "php",
-      "ruby",
-      "swift",
-    ];
+    this.wordList = ['Algorithm', 'Svelte','React','Component','Debugging', 'Javascript', 'Framework', 'Database', 'Cybersecurity', 'Virtualization', 'Encryption', 'Automation', 'Prototype', 'Pythonic', 'Bootstrap', 'Responsive', 'Middleware', 'Blockchain', 'Gamification'];
     this.word = this.wordList[Math.floor(Math.random() * this.wordList.length)];
     this.guessedLetters = new Set();
     this.errors = 0;
@@ -84,26 +73,23 @@ class HangmanGame {
     if (!found) {
       // increment the error counter
       this.errors++;
+    //   console.log(this.errors);
     }
     // if the max number of erors reached
     if (this.errors >= maxErrors) {
-      // increment the losses counter
-      this.losses++;
-      // set the game over flag to true
+      losses++;
       this.gameOver = true;
-      //   reset game with new word???
+      console.log("You lose!", losses);
     }
     // iff all the letter found
     if (this.visibleLetters.every((letter) => letter)) {
-      this.wins++; // Update the wins property of the HangmanGame instance
-      // flag to gameover
+      wins++; // Update the wins property of the HangmanGame instance
       this.gameOver = true;
-      //   reset game with new word???
+      console.log("You win!", wins);
     }
     // if the game is over
     if (this.gameOver) {
       this.updatePageData(); // Update page data to reflect game status
-      // Start a new game
       game = new HangmanGame(); // Create a new game instance with a new word
       game.updatePageData(); // Update page data for the new game
     } else {
@@ -112,39 +98,29 @@ class HangmanGame {
   }
 
   updatePageData() {
-   
-    // Create a string representation of the word with visible letters and underscores for hidden letters
-    // If gameOver is true, display all letters; otherwise, display only visible letters or underscores
     const tempString = this.visibleLetters
       .map((visible, index) =>
         visible || this.gameOver ? this.word[index].toUpperCase() : "_"
       )
       .join(" ");
-    // Update the text content of the wordDisplayLettersElement with the generated string
 
     wordDisplayLettersElement.textContent = tempString;
-    
 
-    // Create a string representation of guessed letters by converting the guessedLetters set to an array,
-    // converting each letter to uppercase, and joining them with spaces
     const guessedString = [...this.guessedLetters]
       .map((letter) => letter.toUpperCase())
       .join(" ");
-    // Update the text content of guessedLettersElement with the generated string,
-    // padded with spaces to ensure a length of 51 characters
+
     guessedLettersElement.textContent = guessedString.padEnd(51, " ");
-    // Update the text content of errorCountElement with the current error count and maximum errors,
-    // padded with spaces to ensure a length of 32 characters
+
     errorCountElement.textContent = `${this.errors} / ${maxErrors}`.padEnd(
       32,
       " "
     );
-    // Update the text content of winCountElement with the current wins count,
-    // padded with spaces to ensure a length of 45 characters
+
     winCountElement.textContent = `${this.wins}`;
-    // Update the text content of lossCountElement with the current losses count,
-    // padded with spaces to ensure a length of 43 characters
+
     lossCountElement.textContent = `${this.losses}`;
+    this.updateScores();
   }
   updateScores() {
     if (this.gameOver) {
@@ -155,33 +131,19 @@ class HangmanGame {
       }
     }
   }
-
-  resetScores() {
-    this.wins = 0;
-    this.losses = 0;
-  }
 }
-// Create a new instance of the HangmanGame class and assign it to the game variable
 let game = new HangmanGame();
-// Event listener for keyup events on the document
 
 document.onkeyup = (event) => {
-  // Convert the pressed key to lowercase and assign it to the userGuess variable
   const userGuess = event.key.toLowerCase();
-
-  // Check if the game is not over, the user's guess is valid, and the guess has not been previously made
 
   if (
     !game.gameOver &&
     validGuesses.has(userGuess) &&
     !game.guessedLetters.has(userGuess)
   ) {
-    // If conditions are met, call the checkGuess method of the game object with the user's guess
     game.checkGuess(userGuess);
   } else {
-    // If conditions are not met, create a new instance of the HangmanGame class and assign it to the game variable
-    // Then, call the updatePageData method of the new game object to update the page data
-    // game = new HangmanGame();
     game.updatePageData();
   }
   game.updateScores();
