@@ -123,6 +123,7 @@ class HangmanGame {
     // Update the text content of the wordDisplayLettersElement with the generated string
 
     wordDisplayLettersElement.textContent = tempString;
+    
 
     // Create a string representation of guessed letters by converting the guessedLetters set to an array,
     // converting each letter to uppercase, and joining them with spaces
