@@ -44,7 +44,7 @@ const validGuesses = new Set([
 class HangmanGame {
   constructor() {
     this.wordList = ['Algorithm', 'Svelte','React','Component','Debugging', 'Javascript', 'Framework', 'Database', 'Cybersecurity', 'Virtualization', 'Encryption', 'Automation', 'Prototype', 'Pythonic', 'Bootstrap', 'Responsive', 'Middleware', 'Blockchain', 'Gamification'];
-    this.word = this.wordList[Math.floor(Math.random() * this.wordList.length)];
+    this.word = this.wordList[Math.floor(Math.random() * this.wordList.length)].toLocaleLowerCase();
     this.guessedLetters = new Set();
     this.errors = 0;
     this.wins = wins;
