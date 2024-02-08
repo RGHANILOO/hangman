@@ -26,8 +26,8 @@
     - Keep guessing until you either win by correctly guessing the word or lose by exceeding the maximum allowed incorrect guesses.
 
 ### Future Development:
-
-    in future and ongoing devlopment of this i will be building some or allof the following features
+    
+in future and ongoing devlopment of this game i will be building some or all of the following features:
     - category selection: currently its only a selection of predifned words relating to software and web developement 
     - hints option : to give user the option to have 1-3 hints dpending on word length
     - timed mode where the user plays against a coundown timer
