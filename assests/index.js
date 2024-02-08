@@ -110,12 +110,9 @@ class HangmanGame {
       .map((letter) => letter.toUpperCase())
       .join(" ");
 
-    guessedLettersElement.textContent = guessedString.padEnd(51, " ");
+    guessedLettersElement.textContent = guessedString;
 
-    errorCountElement.textContent = `${this.errors} / ${maxErrors}`.padEnd(
-      32,
-      " "
-    );
+    errorCountElement.textContent = `${this.errors} / ${maxErrors}`;
 
     winCountElement.textContent = `${this.wins}`;
 
